@@ -1,2 +1,2 @@
 # Color-Flow
-A Simon Game for my class Computational Thinking
+Simon Game for my class Computational Thinking
