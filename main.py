@@ -1,5 +1,7 @@
 import pygame
 from pygame import mixer
+from settings import *
+
 
 pygame.init() #START PYGAME
 
@@ -12,8 +14,8 @@ pygame.display.set_icon(icon)
 # background = pygame.image.load('') #GAME BACKGROUND
 
 # ADD BACKGROUND MUSIC
-# mixer.music.load('')
-# mixer.music.play(-1)  # -1 means it repeats every time it ends
+mixer.music.load('/Users/alvarogonzalez/Documents/PROGRAMMING/Color-Flow/background_music.wav')
+mixer.music.play(-1)  # -1 means it repeats every time it ends
 
 #GAME LOOP
 class Game():
