@@ -40,13 +40,16 @@ class Audio:
         self.current_channel.play(self.sound)
 
 class UIElement: # THING THE USER CAN WATCH OR INTERACT
-    def __init__(self, x, y, text):
+    def __init__(self, x, y, text, font_path='PressStart2P-Regular.ttf', font_size=22, colour=WHITE):
         self.x = x
         self.y = y
         self.text = text
+        self.font_path =font_path
+        self.font_size = font_size
+        self.colour = colour
     
     def draw(self, screen):
-        font = pygame.font.SysFont('8-BitOperator.ttf',22) # FONT
-        text = font.render(self.text, True, WHITE) # TRUE: ACTIVE AN anti-aliasing (SOFT AND HD TEXT)
-        screen.blit (text, (self.x, self.y)) # DRAW AN OBJECT ON THE SCREEN
+        font = pygame.font.Font(self.font_path,self.font_size) # FONT
+        text_surface = font.render(self.text, True, self.colour) # TRUE: ACTIVE AN anti-aliasing (SOFT AND HD TEXT)
+        screen.blit (text_surface, (self.x, self.y)) # DRAW AN OBJECT ON THE SCREEN
         

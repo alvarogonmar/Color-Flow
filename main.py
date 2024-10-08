@@ -41,7 +41,7 @@ class Game:
             score = file.read()
         return int(score)
     def save_score(self):
-        with open('high_score.txt', 'w'):
+        with open('high_score.txt', 'w') as file:
             if self.score > self.high_score: # IF CURRENT SCORE IS MORE THAN THE HIGH SCORE +
                 file.write(str(self.score)) # + WRITE THAT SCORE INTO THE FILE
             else:
@@ -52,17 +52,17 @@ class Game:
         self.pattern = []
         self.current_step = 0
         self.score = 0
-        self.high_score = self.get_high_score
+        self.high_score = self.get_high_score()
 
     
     def run(self):
         self.running = True
         while self.running:
             self.clock.tick(60) #FPS
+            self.click_button = None
             self.events() 
             self.draw()
             self.update()
-            self.click_button = None
 
     #PATTERN DEF
     def update(self):
@@ -87,7 +87,7 @@ class Game:
 
             elif self.click_button and self.click_button != self.pattern[self.current_step]:
                 self.game_over_animation()
-                self.save_Score()
+                self.save_score()
                 self.running = False
 
 
@@ -129,8 +129,8 @@ class Game:
 
     def draw(self):
         self.screen.fill(BACKGROUNDCOLOUR)
-        UIElement(170, 20, f'Score: {str(self.score)}').draw(self.screen)
-        UIElement(370, 20, f'High Score {str(self.high_score)}').draw(self.screen)
+        UIElement(100, 20, f'Score: {str(self.score)}', 'PressStart2P-Regular.ttf', 25, WHITE).draw(self.screen)
+        UIElement(500, 20, f'High Score {str(self.high_score)}', 'PressStart2P-Regular.ttf', 25, WHITE).draw(self.screen)
         for button in self.buttons:
             button.draw(self.screen)
         pygame.display.update()
