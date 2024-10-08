@@ -20,8 +20,8 @@ class Game:
         self.clock = pygame.time.Clock() 
 
         # COLOURS
-        self.flash_colours = [YELLOW, BLUE, RED, GREEN]
-        self.colours = [DARKYELLOW, DARKBLUE, DARKRED, DARKGREEN]
+        self.flash_colours = [RED, BLUE, GREEN, YELLOW]
+        self.colours = [DARKRED, DARKBLUE, DARKGREEN, DARKYELLOW]
 
         # SOUNDS
         self.beep = [Audio(BEEP1), Audio(BEEP2), Audio(BEEP3), Audio(BEEP4)]
@@ -49,7 +49,7 @@ class Game:
             self.events() 
             self.draw()
             self.update()
-            self.clicked_button = None
+            self.click_button = None
 
     #PATTERN DEF
     def update(self):
@@ -77,6 +77,27 @@ class Game:
                 self.save_Score()
                 self.running = False
 
+
+    def button_animation(self, colour):
+        for w in range(len(self.colours)):
+            if self.colours[w] == colour:
+                sound =self.beep[w]
+                flash_colour = self.flash_colours[w]
+                button = self.buttons[w]
+        original_surface = self.screen.copy()
+        flash_surface = pygame.Surface((BUTTON_SIZE, BUTTON_SIZE))
+        flash_surface = flash_surface.convert_alpha() 
+        r, g, b = flash_colour
+        sound.play()
+        for start, end, step in ((0, 255, 1), (255, 0, -1)):
+            for alpha in range(start, end, ANIMATION_SPEED * step):
+                self.screen.blit(original_surface, (0, 0))
+                flash_surface.fill((r, g, b, alpha))
+                self.screen.blit(flash_surface, (button.x, button.y))
+                pygame.display.update()
+                self.clock.tick(60)
+        self.screen.blit(original_surface, (0, 0))
+    # def game_over_animation(self) WE CAN DELETE
 
     def draw(self):
         self.screen.fill(BACKGROUNDCOLOUR)

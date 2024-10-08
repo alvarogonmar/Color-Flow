@@ -22,9 +22,9 @@ class Button:
 # WE CAN DELETE
 class Audio:
     def __init__(self, frequency):
-        duration = 0.6 # DURATION OF THE BIT
-        bits = 16 
-        sample_rate = 44100 # hz sound
+        duration = 0.4 # DURATION OF THE BIT
+        bits = 13 
+        sample_rate = 40000 # hz sound
         total_samples = int(round(duration + sample_rate))
         data = numpy.zeros((total_samples, 2), dtype=numpy.int16) # MAKE ARRAY WITH ZEROS
         max_sample = 2**(bits-1) -1 
