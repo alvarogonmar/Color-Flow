@@ -28,7 +28,12 @@ class Game():
         pass
     
     def run(self):
-        pass
+        self.playing = True
+        while self.playing:
+            self.clock.tick(60) #FPS
+            self.events() 
+            self.draw()
+            self.update()
 
     def update(self):
         pass
@@ -43,6 +48,6 @@ class Game():
                 quit(0) #FINISH THE PROGRAM
 
 game = Game()
-while True:
-    game.new()
-    game.run()
+while True: # INFINITE LOOP TO KEEP THE GAME RUNNING
+    game.new() # START A NEW GAME ROUND
+    game.run()  
