@@ -18,11 +18,15 @@ class Game:
 
         # FPS
         self.clock = pygame.time.Clock() 
-        self.running = True
 
         # ADD BACKGROUND MUSIC
         # mixer.music.load('/Users/alvarogonzalez/Documents/PROGRAMMING/Color-Flow/background_music.wav')
         # mixer.music.play(-1)  # -1 means it repeats every time it ends
+
+        # COLOURS
+        self.flash_colours = [YELLOW, BLUE, RED, GREEN]
+        self.colours = [DARKYELLOW, DARKBLUE, DARKRED, DARKGREEN]
+
         self.buttons = [
             Button(150, 210, DARKRED),    # Left top
             Button(430, 210, DARKBLUE),   # Right top
@@ -33,8 +37,8 @@ class Game:
         pass
     
     def run(self):
-        self.playing = True
-        while self.playing:
+        self.running = True
+        while self.running:
             self.clock.tick(60) #FPS
             self.events() 
             self.draw()
