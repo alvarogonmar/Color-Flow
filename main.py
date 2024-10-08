@@ -65,7 +65,13 @@ class Game:
             if event.type == pygame.QUIT:
                 pygame.quit()
                 quit(0) #FINISH THE PROGRAM
-
+            
+            #CHECK IF THE MOUSE IS PRESSED
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                mouse_x, mouse_y = pygame.mouse.get_pos()
+                for button in self.buttons:
+                    if button.click(mouse_x, mouse_y): # CLASS IN SPRITES
+                        self.click_button = button.colour
 game = Game()
 while True: # INFINITE LOOP TO KEEP THE GAME RUNNING
     game.new() # START A NEW GAME ROUND
