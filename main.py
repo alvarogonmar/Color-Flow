@@ -36,7 +36,11 @@ class Game:
             Button(430, 490, DARKYELLOW)  # Right botton
         ]
     def new(self):
-        
+        self.waiting_input = False
+        self.pattern = []
+        self.current_step = 0
+        self.score = 0
+
     
     def run(self):
         self.running = True
@@ -45,6 +49,7 @@ class Game:
             self.events() 
             self.draw()
             self.update()
+            self.clicked_button = None
 
     def update(self):
         pass
