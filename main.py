@@ -9,7 +9,7 @@ import random
 class Game:
     def __init__(self):
         pygame.init() #START PYGAME
-        self.screen = pygame.display.set_mode((1000, 740)) #DISPLAY THE SCREEN
+        self.screen = pygame.display.set_mode((850, 740)) #DISPLAY THE SCREEN
 
         #TITLE AND ICON
         pygame.display.set_caption('Color Flow')
@@ -24,10 +24,10 @@ class Game:
         # mixer.music.load('/Users/alvarogonzalez/Documents/PROGRAMMING/Color-Flow/background_music.wav')
         # mixer.music.play(-1)  # -1 means it repeats every time it ends
         self.buttons = [
-            Button(230, 220, DARKRED),    # Left, top
-            Button(520, 220, DARKBLUE),   # Right top
-            Button(230, 490, DARKGREEN),  # Left botton
-            Button(520, 490, DARKYELLOW)  # Right botton
+            Button(150, 210, DARKRED),    # Left top
+            Button(430, 210, DARKBLUE),   # Right top
+            Button(150, 490, DARKGREEN),  # Left botton
+            Button(430, 490, DARKYELLOW)  # Right botton
         ]
     def new(self):
         pass
