@@ -39,3 +39,14 @@ class Audio:
         self.current_channel = pygame.mixer.find_channel(True)
         self.current_channel.play(self.sound)
 
+class UIElement: # THING THE USER CAN WATCH OR INTERACT
+    def __init__(self, x, y, text):
+        self.x = x
+        self.y = y
+        self.text = text
+    
+    def draw(self, screen):
+        font = pygame.font.SysFont('8-BitOperator.ttf',22) # FONT
+        text = font.render(self.text, True, WHITE) # TRUE: ACTIVE AN anti-aliasing (SOFT AND HD TEXT)
+        screen.blit (text, (self.x, self.y)) # DRAW AN OBJECT ON THE SCREEN
+        
