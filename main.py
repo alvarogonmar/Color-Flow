@@ -35,7 +35,7 @@ class Game:
             Button(150, 490, DARKGREEN),  # Left botton
             Button(430, 490, DARKYELLOW)  # Right botton
         ]
-    
+
     def get_high_score(self):
         with open('high_score.txt', 'r') as file:
             score = file.read()

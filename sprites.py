@@ -40,7 +40,7 @@ class Audio:
         self.current_channel.play(self.sound)
 
 class UIElement: # THING THE USER CAN WATCH OR INTERACT
-    def __init__(self, x, y, text, font_path='PressStart2P-Regular.ttf', font_size=22, colour=WHITE):
+    def __init__(self, x, y, text, font_path='PressStart2P-Regular.ttf', font_size='', colour=''):
         self.x = x
         self.y = y
         self.text = text
