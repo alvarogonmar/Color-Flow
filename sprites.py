@@ -34,3 +34,8 @@ class Audio:
                 data[sample][channel] = int(round(max_sample * math.sin(2 * math.pi * frequency * sample_time)))
         self.sound  = pygame.sndarray.make_sound(data)
         self.current_channel = None
+    
+    def play(self):
+        self.current_channel = pygame.mixer.find_channel(True)
+        self.current_channel.play(self.sound)
+
