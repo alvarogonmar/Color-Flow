@@ -14,3 +14,4 @@ class Button:
     def click(self, mouse_x, mouse_y): #CLICKING 
         # RETURN TRUE IF MOUSE_X AND MOUSE_Y ARE INSIDE OF THE RECTANGLE 
         return self.x <= mouse_x <= self.x + BUTTON_SIZE and self.y <= mouse_y <= self.y + BUTTON_SIZE
+    

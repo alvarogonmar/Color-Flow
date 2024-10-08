@@ -6,10 +6,10 @@ import random
 
 
 #GAME LOOP
-class Game():
+class Game:
     def __init__(self):
         pygame.init() #START PYGAME
-        screen = pygame.display.set_mode((640, 500)) #DISPLAY THE SCREEN
+        self.screen = pygame.display.set_mode((640, 500)) #DISPLAY THE SCREEN
 
         #TITLE AND ICON
         pygame.display.set_caption('Color Flow')
@@ -27,7 +27,7 @@ class Game():
             Button(110, 50, DARKYELLOW),
             Button(330, 50, DARKBLUE),
             Button(110, 270, DARKRED),
-            Button(330, 270, DARKGREEN)
+            Button(330, 270, DARKGREEN),
         ]
     def new(self):
         pass
@@ -44,7 +44,10 @@ class Game():
         pass
 
     def draw(self):
-        pass
+        self.screen.fill(BACKGROUNDCOLOUR)
+        for button in self.buttons:
+            button.draw(self.screen)
+        pygame.display.update()
 
     def events(self):
         for event in pygame.event.get():
