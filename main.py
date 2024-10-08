@@ -51,8 +51,32 @@ class Game:
             self.update()
             self.clicked_button = None
 
+    #PATTERN DEF
     def update(self):
-        pass
+        if not self.waiting_input: # IF IF NOT WAITING FOR INPUT, THAT MEANS THE PROGRAM HAVE TO GIVE US THE PATTERN
+            pygame.time.wait(1000)
+            self.pattern.append(random.choice(self.colours)) #CHOOSING A RANDOM COLOR FROM THE LIST AND ADDING IT TO THE PATTERN
+            for button in self.pattern:
+                self.button_animation(button) # FLASH COLOUR
+                pygame.time.wait(200)
+            self.waiting_input = True
+        else: 
+            # PUSH THE CORRECT BUTTON
+            if self.click_button and self.click_button == self.pattern[self.current_step]:
+                self.button_animation(self.click_button)
+                self.current_step += 1
+
+                #PUSHED THE LAST BUTTON
+                if self.current_step == len(self.pattern):
+                    self.score += 1
+                    self.waiting_input = False
+                    self.current_step = 0
+
+            elif self.click_button and self.click_button != self.pattern[self.current_step]:
+                self.game_over_animation()
+                self.save_Score()
+                self.running = False
+
 
     def draw(self):
         self.screen.fill(BACKGROUNDCOLOUR)
