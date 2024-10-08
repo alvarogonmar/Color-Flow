@@ -42,4 +42,7 @@ class Game():
                 pygame.quit()
                 quit(0) #FINISH THE PROGRAM
 
-    
+game = Game()
+while True:
+    game.new()
+    game.run()
