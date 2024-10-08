@@ -19,14 +19,16 @@ class Game:
         # FPS
         self.clock = pygame.time.Clock() 
 
-        # ADD BACKGROUND MUSIC
-        # mixer.music.load('/Users/alvarogonzalez/Documents/PROGRAMMING/Color-Flow/background_music.wav')
-        # mixer.music.play(-1)  # -1 means it repeats every time it ends
-
         # COLOURS
         self.flash_colours = [YELLOW, BLUE, RED, GREEN]
         self.colours = [DARKYELLOW, DARKBLUE, DARKRED, DARKGREEN]
 
+        # SOUNDS
+        self.beep = [Audio(BEEP1), Audio(BEEP2), Audio(BEEP3), Audio(BEEP4)]
+
+        # ADD BACKGROUND MUSIC
+        # mixer.music.load('/Users/alvarogonzalez/Documents/PROGRAMMING/Color-Flow/background_music.wav')
+        # mixer.music.play(-1)  # -1 means it repeats every time it ends
         self.buttons = [
             Button(150, 210, DARKRED),    # Left top
             Button(430, 210, DARKBLUE),   # Right top
@@ -34,7 +36,7 @@ class Game:
             Button(430, 490, DARKYELLOW)  # Right botton
         ]
     def new(self):
-        pass
+        
     
     def run(self):
         self.running = True
