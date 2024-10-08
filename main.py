@@ -97,7 +97,22 @@ class Game:
                 pygame.display.update()
                 self.clock.tick(60)
         self.screen.blit(original_surface, (0, 0))
-    # def game_over_animation(self) WE CAN DELETE
+    
+    def game_over_animation(self):
+        original_surface = self.screen.copy()
+        flash_surface = pygame.Surface((self.screen.get_size()))
+        flash_surface = flash_surface.convert_alpha()
+        for beep in self.beep: # PLAY ALL THE BEEPS AT THE SAME TIME
+            beep.play()
+        r, g, b = WHITE
+        for _ in range(3):
+            for start, end, step in ((0, 255, 1), (255, 0, -1)):
+                for alpha in range(start, end, ANIMATION_SPEED * step):
+                    self.screen.blit(original_surface, (0, 0))
+                    flash_surface.fill((r, g, b, alpha))
+                    self.screen.blit(flash_surface, (0, 0))
+                    pygame.display.update()
+                    self.clock.tick(60)
 
     def draw(self):
         self.screen.fill(BACKGROUNDCOLOUR)
