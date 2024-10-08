@@ -35,11 +35,24 @@ class Game:
             Button(150, 490, DARKGREEN),  # Left botton
             Button(430, 490, DARKYELLOW)  # Right botton
         ]
+    
+    def get_high_score(self):
+        with open('high_score.txt', 'r') as file:
+            score = file.read()
+        return int(score)
+    def save_score(self):
+        with open('high_score.txt', 'w'):
+            if self.score > self.high_score: # IF CURRENT SCORE IS MORE THAN THE HIGH SCORE +
+                file.write(str(self.score)) # + WRITE THAT SCORE INTO THE FILE
+            else:
+                file.write(str(self.high_score))
+
     def new(self):
         self.waiting_input = False
         self.pattern = []
         self.current_step = 0
         self.score = 0
+        self.high_score = self.get_high_score
 
     
     def run(self):
@@ -116,6 +129,8 @@ class Game:
 
     def draw(self):
         self.screen.fill(BACKGROUNDCOLOUR)
+        UIElement(170, 20, f'Score: {str(self.score)}').draw(self.screen)
+        UIElement(370, 20, f'High Score {str(self.high_score)}').draw(self.screen)
         for button in self.buttons:
             button.draw(self.screen)
         pygame.display.update()
