@@ -24,10 +24,10 @@ class Game:
         # mixer.music.load('/Users/alvarogonzalez/Documents/PROGRAMMING/Color-Flow/background_music.wav')
         # mixer.music.play(-1)  # -1 means it repeats every time it ends
         self.buttons = [
-            Button(110, 50, DARKYELLOW),
+            Button(110, 50, DARKRED),
             Button(330, 50, DARKBLUE),
-            Button(110, 270, DARKRED),
-            Button(330, 270, DARKGREEN),
+            Button(110, 270,DARKGREEN),
+            Button(330, 270, DARKYELLOW),
         ]
     def new(self):
         pass
