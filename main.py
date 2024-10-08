@@ -9,7 +9,7 @@ import random
 class Game:
     def __init__(self):
         pygame.init() #START PYGAME
-        self.screen = pygame.display.set_mode((850, 740)) #DISPLAY THE SCREEN
+        self.screen = pygame.display.set_mode((850, 780)) #DISPLAY THE SCREEN
 
         #TITLE AND ICON
         pygame.display.set_caption('Color Flow')
