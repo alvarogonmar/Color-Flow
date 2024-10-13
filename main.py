@@ -13,11 +13,11 @@ class Game:
 
         #TITLE AND ICON
         pygame.display.set_caption('Color Flow')
-        icon = pygame.image.load('/Users/alvarogonzalez/Documents/PROGRAMMING/Color-Flow/simon_logo.png') #APP ICON
+        icon = pygame.image.load('/Users/alvarogonzalez/Documents/PROGRAMMING/Color-Flow/images/simon_logo.png') #APP ICON
         pygame.display.set_icon(icon)
 
         #BACKGROUND IMAGE
-        self.background_image = pygame.image.load('/Users/alvarogonzalez/Documents/PROGRAMMING/Color-Flow/black_image2.jpg')
+        self.background_image = pygame.image.load('/Users/alvarogonzalez/Documents/PROGRAMMING/Color-Flow/images/black_image2.jpg')
         self.background_image = pygame.transform.scale(self.background_image, (850, 780))
 
         # FPS
