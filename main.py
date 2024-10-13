@@ -34,10 +34,10 @@ class Game:
 
         # SOUNDS
         self.beep = [Audio(BEEP1), Audio(BEEP2), Audio(BEEP3), Audio(BEEP4)]
-        self.steve = mixer.Sound('/Users/alvarogonzalez/Documents/PROGRAMMING/Color-Flow/steve_uo.mp3')
+        self.steve = mixer.Sound('/Users/alvarogonzalez/Documents/PROGRAMMING/Color-Flow/sounds/steve_uo.mp3')
         
         # ADD BACKGROUND MUSIC
-        mixer.music.load('/Users/alvarogonzalez/Documents/PROGRAMMING/Color-Flow/dress_to_impress.mp3')
+        mixer.music.load('/Users/alvarogonzalez/Documents/PROGRAMMING/Color-Flow/sounds/dress_to_impress.mp3')
         mixer.music.play(-1)  # -1 means it repeats every time it ends
         mixer.music.set_volume(0.15) # MUSIC VOLUME
 
