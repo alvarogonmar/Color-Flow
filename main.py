@@ -27,7 +27,7 @@ class Game:
         self.beep = [Audio(BEEP1), Audio(BEEP2), Audio(BEEP3), Audio(BEEP4)]
 
         # ADD BACKGROUND MUSIC
-        # mixer.music.load('/Users/alvarogonzalez/Documents/PROGRAMMING/Color-Flow/background_music.wav')
+        # mixer.music.load('/Users/alvarogonzalez/Documents/PROGRAMMING/Color-Flow/dress_to_impress.mp3')
         # mixer.music.play(-1)  # -1 means it repeats every time it ends
         self.buttons = [
             Button(150, 210, DARKRED),    # Left top
@@ -40,6 +40,7 @@ class Game:
         with open('high_score.txt', 'r') as file:
             score = file.read()
         return int(score)
+
     def save_score(self):
         with open('high_score.txt', 'w') as file:
             if self.score > self.high_score: # IF CURRENT SCORE IS MORE THAN THE HIGH SCORE +
@@ -47,7 +48,7 @@ class Game:
             else:
                 file.write(str(self.high_score))
 
-    def new(self):
+    def new_round(self):
         self.waiting_input = False
         self.pattern = []
         self.current_step = 0
@@ -131,6 +132,7 @@ class Game:
         self.screen.fill(BACKGROUNDCOLOUR)
         UIElement(100, 20, f'Score: {str(self.score)}', 'PressStart2P-Regular.ttf', 25, WHITE).draw(self.screen)
         UIElement(500, 20, f'High Score {str(self.high_score)}', 'PressStart2P-Regular.ttf', 25, WHITE).draw(self.screen)
+        UIElement(200, 100, f'Color Flow', 'PressStart2P-Regular.ttf', 25, WHITE).draw(self.screen)
         for button in self.buttons:
             button.draw(self.screen)
         pygame.display.update()
@@ -149,5 +151,5 @@ class Game:
                         self.click_button = button.colour
 game = Game()
 while True: # INFINITE LOOP TO KEEP THE GAME RUNNING
-    game.new() # START A NEW GAME ROUND
+    game.new_round() # START A NEW GAME ROUND
     game.run()  
