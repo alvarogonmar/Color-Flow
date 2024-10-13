@@ -16,6 +16,10 @@ class Game:
         icon = pygame.image.load('/Users/alvarogonzalez/Documents/PROGRAMMING/Color-Flow/simon_logo.png') #APP ICON
         pygame.display.set_icon(icon)
 
+        #BACKGROUND IMAGE
+        self.background_image = pygame.image.load('/Users/alvarogonzalez/Documents/PROGRAMMING/Color-Flow/black_image2.jpg')
+        self.background_image = pygame.transform.scale(self.background_image, (850, 780))
+
         # FPS
         self.clock = pygame.time.Clock() 
 
@@ -23,12 +27,20 @@ class Game:
         self.flash_colours = [RED, BLUE, GREEN, YELLOW]
         self.colours = [DARKRED, DARKBLUE, DARKGREEN, DARKYELLOW]
 
+         # COUNTER FOR CHANGING THE COLORS
+        self.text_color_title = 0  # FIRST COLOR
+        self.color_change_interval = 500  # CHANGE COLOR EVERY 0.5 SECONDS
+        self.last_color_change_time = pygame.time.get_ticks()  # GETS THE LAST TIME COLOR CHANGED
+
         # SOUNDS
         self.beep = [Audio(BEEP1), Audio(BEEP2), Audio(BEEP3), Audio(BEEP4)]
-
+        self.steve = mixer.Sound('/Users/alvarogonzalez/Documents/PROGRAMMING/Color-Flow/steve_uo.mp3')
+        
         # ADD BACKGROUND MUSIC
-        # mixer.music.load('/Users/alvarogonzalez/Documents/PROGRAMMING/Color-Flow/dress_to_impress.mp3')
-        # mixer.music.play(-1)  # -1 means it repeats every time it ends
+        mixer.music.load('/Users/alvarogonzalez/Documents/PROGRAMMING/Color-Flow/dress_to_impress.mp3')
+        mixer.music.play(-1)  # -1 means it repeats every time it ends
+        mixer.music.set_volume(0.15) # MUSIC VOLUME
+
         self.buttons = [
             Button(150, 210, DARKRED),    # Left top
             Button(430, 210, DARKBLUE),   # Right top
@@ -93,16 +105,19 @@ class Game:
 
 
     def button_animation(self, colour):
-        for w in range(len(self.colours)):
-            if self.colours[w] == colour:
-                sound =self.beep[w]
-                flash_colour = self.flash_colours[w]
-                button = self.buttons[w]
+        for colours1 in range(len(self.colours)):
+            if self.colours[colours1] == colour:
+                sound =self.beep[colours1]
+                flash_colour = self.flash_colours[colours1]
+                button = self.buttons[colours1]
+
         original_surface = self.screen.copy()
         flash_surface = pygame.Surface((BUTTON_SIZE, BUTTON_SIZE))
         flash_surface = flash_surface.convert_alpha() 
         r, g, b = flash_colour
+        
         sound.play()
+        
         for start, end, step in ((0, 255, 1), (255, 0, -1)):
             for alpha in range(start, end, ANIMATION_SPEED * step):
                 self.screen.blit(original_surface, (0, 0))
@@ -116,12 +131,12 @@ class Game:
         original_surface = self.screen.copy()
         flash_surface = pygame.Surface((self.screen.get_size()))
         flash_surface = flash_surface.convert_alpha()
-        for beep in self.beep: # PLAY ALL THE BEEPS AT THE SAME TIME
-            beep.play()
-        r, g, b = WHITE
+        self.steve.play()
+
+        r, g, b = PURPLE
         for _ in range(3):
             for start, end, step in ((0, 255, 1), (255, 0, -1)):
-                for alpha in range(start, end, ANIMATION_SPEED * step):
+                for alpha in range(start, end, GAME_OVER_ANIMATION_SPEED * step):
                     self.screen.blit(original_surface, (0, 0))
                     flash_surface.fill((r, g, b, alpha))
                     self.screen.blit(flash_surface, (0, 0))
@@ -129,10 +144,27 @@ class Game:
                     self.clock.tick(60)
 
     def draw(self):
-        self.screen.fill(BACKGROUNDCOLOUR)
-        UIElement(100, 20, f'Score: {str(self.score)}', 'PressStart2P-Regular.ttf', 25, WHITE).draw(self.screen)
-        UIElement(500, 20, f'High Score {str(self.high_score)}', 'PressStart2P-Regular.ttf', 25, WHITE).draw(self.screen)
-        UIElement(200, 100, f'Color Flow', 'PressStart2P-Regular.ttf', 25, WHITE).draw(self.screen)
+        self.screen.blit(self.background_image, (0, 0))
+
+        UIElement(100, 100, f'Score: {str(self.score)}', 'PressStart2P-Regular.ttf', 25, WHITE).draw(self.screen)
+        UIElement(500, 100, f'High Score {str(self.high_score)}', 'PressStart2P-Regular.ttf', 25, WHITE).draw(self.screen)
+
+        # GET ACTUAL TIME
+        current_time = pygame.time.get_ticks()
+
+        # CHANGE THE TEXT COLOR EVERY O.5s
+        if current_time - self.last_color_change_time > self.color_change_interval:
+            self.text_color_title = (self.text_color_title + 1) % len(self.flash_colours)
+            self.last_color_change_time = current_time  # UPDATES THE TIME OF THE LAST COLOUR CHANGED
+
+        # SELECT THE ACTUAL COLOR
+        current_color = self.flash_colours[self.text_color_title]
+        
+        # DRAWS THE TEXT WITH THE ACTUAL COLOR
+        UIElement(220, 20, f'Color Flow', 'PressStart2P-Regular.ttf', 40, current_color).draw(self.screen)
+
+
+
         for button in self.buttons:
             button.draw(self.screen)
         pygame.display.update()
