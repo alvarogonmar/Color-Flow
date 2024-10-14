@@ -162,10 +162,10 @@ class Game:
         # Draw the background, score, high score, and buttons on the screen
         self.screen.blit(self.background_image, (0, 0))
 
-        UIElement(
+        Texts(
             100, 100, f'Score: {str(self.score)}', 'PressStart2P-Regular.ttf', 25, WHITE
         ).draw(self.screen)
-        UIElement(
+        Texts(
             500, 100, f'High Score {str(self.high_score)}', 'PressStart2P-Regular.ttf',
             25, WHITE
         ).draw(self.screen)
@@ -182,7 +182,7 @@ class Game:
         current_color = self.flash_colors[self.text_color_title]
 
         # Draw the title with the current color
-        UIElement(
+        Texts(
             220, 20, 'Color Flow', 'PressStart2P-Regular.ttf', 40, current_color
         ).draw(self.screen)
 

@@ -46,8 +46,8 @@ class Audio:
         self.current_channel = pygame.mixer.find_channel(True)
         self.current_channel.play(self.sound)
 
-# UIElement class to create text elements on the screen
-class UIElement:
+# Texts class to create text elements on the screen
+class Texts:
     def __init__(self, x, y, text, font_path='PressStart2P-Regular.ttf', font_size='', color=''):
         # Initialize text position, content, font path, size, and color
         self.x = x
